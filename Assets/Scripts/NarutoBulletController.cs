@@ -6,7 +6,6 @@ public class NarutoBulletController : MonoBehaviour
 {
     public float velocityX = 5f;
     Rigidbody2D rb;
-    
 
 
     void Start()
@@ -27,7 +26,8 @@ public class NarutoBulletController : MonoBehaviour
         Destroy(this.gameObject);
         if (collision.gameObject.tag == "Player") 
         {
-        Destroy(collision.gameObject);
+            Destroy(collision.gameObject);
+            Time.timeScale = 0;
         }
     }
 }

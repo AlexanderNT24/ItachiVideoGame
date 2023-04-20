@@ -26,6 +26,7 @@ public class BulletController : MonoBehaviour
         Destroy(this.gameObject);
         if (collision.gameObject.tag == "Enemy") 
         {
+            Time.timeScale = 0;
         Destroy(collision.gameObject);
         }
     }
