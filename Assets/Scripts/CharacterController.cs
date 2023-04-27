@@ -7,7 +7,8 @@ public class CharacterController : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
     SpriteRenderer sr;
-
+    
+    public int vidas;
     public Transform firePoint;
     public GameObject bullet;
 
@@ -16,13 +17,15 @@ public class CharacterController : MonoBehaviour
     private float nextFireTime = 0f; // tiempo hasta que se pueda crear la próxima bala
 
     private int currentAnimation = 0;
+    private PointController pointController;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-
+        pointController = FindObjectOfType<PointController>();
     }
 
     void Update()
@@ -43,13 +46,15 @@ public class CharacterController : MonoBehaviour
             rb.velocity = new Vector2(-4, velocityY);
             sr.flipX = true;
         }
-        if (Input.GetKey("q") && Time.time > nextFireTime)
+        if (Input.GetKey("q") && Time.time > nextFireTime && pointController.puntos > 0)
         {
             nextFireTime = Time.time + fireRate; // Establecer el tiempo de espera hasta la siguiente bala
 
             var balaGO = Instantiate(bullet, firePoint.position, Quaternion.identity);
             var controller = balaGO.GetComponent<BulletController>();
             currentAnimation = 3;
+
+            pointController.SumarPuntos(-1); // Restar un punto por cada bala creada
         }
 
         if (Input.GetKeyUp(KeyCode.Space))

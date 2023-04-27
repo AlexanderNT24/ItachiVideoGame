@@ -26,8 +26,14 @@ public class NarutoBulletController : MonoBehaviour
         Destroy(this.gameObject);
         if (collision.gameObject.tag == "Player") 
         {
-            Destroy(collision.gameObject);
-            Time.timeScale = 0;
+            if( FindObjectOfType<LifesController>().vidas<0){
+
+                Time.timeScale = 0;
+        Destroy(collision.gameObject);
+            }
+
+            FindObjectOfType<LifesController>().RestLife();
+
         }
     }
 }

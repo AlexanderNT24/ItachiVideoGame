@@ -28,6 +28,13 @@ public class BulletController : MonoBehaviour
         {
             Time.timeScale = 0;
         Destroy(collision.gameObject);
+        
+        }
+        if (collision.gameObject.tag == "EnemyBullet") 
+        {
+            FindObjectOfType<KillsController>().AddKill();
+
+        
         }
     }
 }
