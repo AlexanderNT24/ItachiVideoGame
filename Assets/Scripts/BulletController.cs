@@ -5,6 +5,8 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public float velocityX = 250f;
+    public float velocityY = 0;
+    public int a;
     Rigidbody2D rb;
 
 
@@ -17,7 +19,7 @@ public class BulletController : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = new Vector2(+velocityX, 0);
+        rb.velocity = new Vector2(+velocityX, velocityY);
         Destroy(this.gameObject,5f);
     }
 
